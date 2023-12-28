@@ -12,10 +12,11 @@ type Genre = {
 };
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Card({ params: { id } }: Props) {
   const [movie, setMovie] = useState<{
-    id: string;
+    id: number;
     title: string;
     poster_path: string;
     vote_average: number;
@@ -76,6 +77,7 @@ export default function Card({ params: { id } }: Props) {
 
   return (
     <>
+      <Link href={"/movie"}>back</Link>
       <div>
         <img src={img} alt="movie" />
         <p>{movie.title}</p>
