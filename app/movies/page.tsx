@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 
 export default function Movies() {
   const [query, setQuery] = useState("");
@@ -11,16 +10,16 @@ export default function Movies() {
   const handleSearch = async () => {
     try {
       console.log("1");
-      const response: any = await axios.get(`/api/moviequery?query=${query}`);
+      const response: any = await fetch(`/api/moviequery?query=${query}`);
       // console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const data = await response.json();
-      console.log(response);
+      const { results } = await response.json();
 
-      console.log(data);
-      setMovies(data);
+      if (results) {
+        setMovies(results);
+      }
     } catch (error) {
       console.error("Error searching movies:", error);
     }
@@ -40,7 +39,9 @@ export default function Movies() {
         <ul>
           {movies.map((movie: any) => (
             <li key={movie.id}>
-              <Link href={`/movies/`}>{}</Link>
+              <Link href={`/movie/${movie.id}`}>
+                {movie.title ?? movie.name}
+              </Link>
             </li>
           ))}
         </ul>
