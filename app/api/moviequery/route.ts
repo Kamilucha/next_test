@@ -24,9 +24,6 @@ export const GET = async (req: Request) => {
     console.log("2");
 
     const data = response.json();
-    // console.log("1111111");
-    // console.log(data);
-    // console.log("1111111");
 
     console.log(data);
     console.log("4");
