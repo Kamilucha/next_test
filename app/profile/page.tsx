@@ -5,7 +5,10 @@ export default async function Profile() {
   const session = await getServerSession(authConfig);
   return (
     <>
-      <h1>Profile of {session?.user?.name}</h1>
+      <div className="container">
+        <h1>Profile of {session?.user?.name}</h1>
+        <img src="{session?.user?.image}" alt="avatar" />
+      </div>
     </>
   );
 }

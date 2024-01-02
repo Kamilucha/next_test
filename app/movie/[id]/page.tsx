@@ -13,6 +13,7 @@ type Genre = {
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import styles from "./styles.module.css";
 
 export default function Card({ params: { id } }: Props) {
   const [movie, setMovie] = useState<{
@@ -22,6 +23,7 @@ export default function Card({ params: { id } }: Props) {
     vote_average: number;
     genres: Genre[];
     overview: string;
+    tagline: string;
   } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -61,7 +63,11 @@ export default function Card({ params: { id } }: Props) {
   }
 
   if (!movie) {
-    return <div>No movie data available.</div>;
+    return (
+      <div className="container">
+        Information about the movie will be available soon.
+      </div>
+    );
   }
 
   const img = movie.poster_path
@@ -77,17 +83,24 @@ export default function Card({ params: { id } }: Props) {
 
   return (
     <>
-      <Link href={"/movie"}>back</Link>
-      <div>
-        <img src={img} alt="movie" />
-        <p>{movie.title}</p>
-        <p>User Score: {persentageRate}%</p>
+      <div className="container">
+        <Link href={"/movie"}>Back to movies</Link>
+        <div className={styles.movie_card}>
+          <img src={img} alt="movie" />
+          <div>
+            <h2 className={styles.title}>{movie.title}</h2>
+            <p className={styles.description}>{movie.tagline}</p>
 
-        <h3>Owerview</h3>
-        <p>{movie.overview}</p>
+            <h3 className={styles.title_desc}>User Score:</h3>
+            <p className={styles.description}>{persentageRate}%</p>
 
-        <h3>Genres</h3>
-        <p>{movieGenres}</p>
+            <h3 className={styles.title_desc}>Owerview</h3>
+            <p className={styles.description}>{movie.overview}</p>
+
+            <h3 className={styles.title_desc}>Genres</h3>
+            <p className={styles.description}>{movieGenres}</p>
+          </div>
+        </div>
       </div>
     </>
   );

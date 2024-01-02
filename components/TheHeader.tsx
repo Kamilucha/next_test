@@ -10,20 +10,22 @@ const TheHeader = () => {
 
   return (
     <header>
-      <Link href="/">Home</Link>
-      <Link href="/movies">Movies</Link>
       {session?.data && <Link href="/profile">Profile</Link>}
       {session?.data ? (
-        <Link
-          href="#"
-          onClick={() =>
-            signOut({
-              callbackUrl: "/",
-            })
-          }
-        >
-          Sign Out
-        </Link>
+        <>
+          <Link href="/">Home</Link>
+          <Link href="/movies">Movies</Link>
+          <Link
+            href="#"
+            onClick={() =>
+              signOut({
+                callbackUrl: "/",
+              })
+            }
+          >
+            Sign Out
+          </Link>
+        </>
       ) : (
         <Link href="/api/auth/signin">SignIn</Link>
       )}

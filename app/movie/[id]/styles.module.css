@@ -1,0 +1,20 @@
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: calc(32 / 28);
+}
+
+.movie_card {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.description {
+  color: rgba(128, 128, 128, 0.9);
+  margin-top: 10px;
+}
+
+.title_desc {
+  margin-top: 10px;
+}

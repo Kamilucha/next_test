@@ -17,16 +17,18 @@ export default function Movie() {
 
   return (
     <>
-      <h2>Movie</h2>
-      <ul>
-        {movie.results.map((mov: any) => (
-          <li key={mov.id}>
-            <Link href={`/movie/${mov.id}`}>
-              {mov.title ? mov.title : mov.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="section">
+        <h2>Movies</h2>
+        <ul>
+          {movie.results.map((mov: any) => (
+            <li key={mov.id}>
+              <Link href={`/movie/${mov.id}`}>
+                {mov.title ? mov.title : mov.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

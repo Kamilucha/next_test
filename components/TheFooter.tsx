@@ -1,7 +1,7 @@
 const TheFooter = () => {
   return (
     <footer>
-      <p>отакий футер ляляля</p>
+      <p>...</p>
     </footer>
   );
 };

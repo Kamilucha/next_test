@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Movies() {
@@ -11,7 +11,6 @@ export default function Movies() {
     try {
       console.log("1");
       const response: any = await fetch(`/api/moviequery?query=${query}`);
-      // console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -25,26 +24,35 @@ export default function Movies() {
     }
   };
 
+  useEffect(() => {
+    handleSearch();
+  }, [query]);
+
+  if (!movies) {
+    return <p>No movies found.</p>;
+  }
+
   return (
     <>
-      <h1>Movies</h1>
-      <div>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for movies..."
-        />
-        <button onClick={() => handleSearch()}>Search</button>
-        <ul>
-          {movies.map((movie: any) => (
-            <li key={movie.id}>
-              <Link href={`/movie/${movie.id}`}>
-                {movie.title ?? movie.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className="container">
+        <h1>Find your movie 🔍 </h1>
+        <div className="section">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for movies..."
+          />
+          <ul>
+            {movies.map((movie: any) => (
+              <li key={movie.id}>
+                <Link href={`/movie/${movie.id}`}>
+                  {movie.title ?? movie.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
