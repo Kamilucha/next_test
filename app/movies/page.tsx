@@ -9,7 +9,6 @@ export default function Movies() {
 
   const handleSearch = async () => {
     try {
-      console.log("1");
       const response: any = await fetch(`/api/moviequery?query=${query}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");

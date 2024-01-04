@@ -14,6 +14,7 @@ type Genre = {
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
+import { Cast } from "@/components/Cast";
 
 export default function Card({ params: { id } }: Props) {
   const [movie, setMovie] = useState<{
@@ -52,7 +53,6 @@ export default function Card({ params: { id } }: Props) {
 
     fetchData();
   }, [id]);
-  console.log(movie);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -101,6 +101,7 @@ export default function Card({ params: { id } }: Props) {
             <p className={styles.description}>{movieGenres}</p>
           </div>
         </div>
+        <Cast params={{ id: 346698 }}></Cast>
       </div>
     </>
   );

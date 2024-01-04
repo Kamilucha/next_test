@@ -6,8 +6,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 const TheHeader = () => {
   const session = useSession();
 
-  console.log(session);
-
   return (
     <header>
       {session?.data && <Link href="/profile">Profile</Link>}
