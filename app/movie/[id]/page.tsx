@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import { Cast } from "@/components/Cast";
+import Loader from "@/components/Loader";
 
 export default function Card({ params: { id } }: Props) {
   const [movie, setMovie] = useState<{
@@ -55,7 +56,7 @@ export default function Card({ params: { id } }: Props) {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
@@ -101,7 +102,7 @@ export default function Card({ params: { id } }: Props) {
             <p className={styles.description}>{movieGenres}</p>
           </div>
         </div>
-        <Cast params={{ id: 346698 }}></Cast>
+        <Cast params={{ id: id }}></Cast>
       </div>
     </>
   );

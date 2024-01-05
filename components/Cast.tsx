@@ -2,7 +2,7 @@
 
 type CastProps = {
   params: {
-    id: number;
+    id: string | number;
   };
 };
 
@@ -10,29 +10,33 @@ import { useEffect, useState } from "react";
 
 const Cast = ({ params: { id } }: CastProps) => {
   const [cast, setCast] = useState<{
-    id: number;
-    title: string;
+    cast_id: number;
+    name: string;
     profile_path: string;
     vote_average: number;
     overview: string;
     tagline: string;
   } | null>(null);
 
-  console.log(cast);
   useEffect(() => {
     const getCastById = async (id: any) => {
       try {
-        const resp = await fetch(`/api/cast/${id}`);
+        const resp: any = await fetch(`/api/cast/${id}`);
+        if (!resp.ok) {
+          throw new Error("Network response was not ok");
+        }
         const data = await resp.json();
         setCast(data.cast);
-        console.log(data);
+        console.log(resp);
       } catch (error) {
-        console.error("Error fetching cast:", error);
+        console.log("Error fetching cast:", error);
       }
     };
 
     getCastById(id);
   }, [id]);
+
+  // console.log(cast);
   return (
     <>
       <div>

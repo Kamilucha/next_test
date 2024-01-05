@@ -3,12 +3,13 @@
 import useSWR from "swr";
 import { getAll } from "@/services/getAll";
 import Link from "next/link";
+import Loader from "@/components/Loader";
 
 export default function Movie() {
   const { data: movie, isLoading } = useSWR("movie", getAll);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (!movie) {
