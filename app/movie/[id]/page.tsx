@@ -14,7 +14,7 @@ type Genre = {
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import { Cast } from "@/components/Cast";
+import { Cast } from "@/components/Cast/Cast";
 import Loader from "@/components/Loader";
 
 export default function Card({ params: { id } }: Props) {

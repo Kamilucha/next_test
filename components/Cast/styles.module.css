@@ -1,0 +1,17 @@
+.cast_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.cast_item {
+  max-width: 200px;
+}
+
+.slider {
+  margin: 20px 0;
+}
+
+.cast_item {
+  text-align: center;
+}
